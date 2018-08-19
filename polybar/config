@@ -1,0 +1,164 @@
+[bar/top]
+monitor = eDP-1
+width = 100%
+height = 34
+
+background = #dd31383f
+foreground = #ccffffff
+
+line-color = ${bar/top.background}
+line-size = 16
+
+spacing = 2
+padding-right = 5
+module-margin = 4
+
+font-0 = NotoSans-Regular:size=8;-1
+font-1 = MaterialIcons:size=10;0
+font-2 = Termsynu:size=8:antialias=false;-2
+font-3 = FontAwesome:size=10;0
+
+modules-left = i3 xwindow
+modules-center = date
+modules-right = wireless-network wired-network battery
+
+[module/i3]
+type = internal/i3
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = true
+
+; This will split the workspace name on ':'
+; Default: false
+strip-wsnumbers = true
+
+; Sort the workspaces by index instead of the default
+; sorting that groups the workspaces by output
+; Default: false
+index-sort = true
+
+enable-click = true
+
+; ws-icon-[0-9]+ = label;icon
+; NOTE: The label needs to match the name of the i3 workspace
+ws-icon-0 = 1
+ws-icon-1 = 2
+ws-icon-2 = 3
+ws-icon-3 = 4
+ws-icon-4 = 5
+ws-icon-5 = 6
+ws-icon-6 = 7
+ws-icon-7 = 8
+ws-icon-8 = 9
+ws-icon-9 = 10
+; NOTE: You cannot skip icons, e.g. to get a ws-icon-6
+; you must also define a ws-icon-5.
+
+; Available tags:
+;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
+;   <label-mode> (default)
+format = <label-state> <label-mode>
+
+; Available tokens:
+;   %mode%
+; Default: %mode%
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = #e60053
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-focused = %index%
+label-focused-foreground = #ffffff
+label-focused-background = #e60053
+; label-focused-underline = #e60053
+label-focused-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-unfocused = %index%
+label-unfocused-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-visible = %index%
+label-visible-underline = #555555
+label-visible-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-urgent = %index%
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-padding = 4
+
+; Separator in between workspaces
+label-separator = |
+label-separator-padding = 2
+label-separator-foreground = #000000
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:50:...%
+
+[module/battery]
+type = internal/battery
+full-at = 98
+
+format-charging = <label-charging>
+format-discharging = <label-discharging>
+format-full = <label-full>
+
+label-charging = %percentage%% 
+
+[module/date]
+type = internal/date
+date = %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
+date-alt = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#bd2c40}%S%%{F-}
+
+[module/wireless-network]
+type = internal/network
+interface = wlan0
+interval = 30.0
+ping-interval = 30
+
+format-connected = <label-connected>
+label-connected = %essid%
+label-disconnected = not connected
+label-disconnected-foreground = #66
+
+[module/wired-network]
+type = internal/network
+interface = eth0
+interval = 30.0
+
+label-connected = %{T3}%local_ip%%{T-}
+label-disconnected-foreground = #66
+
+[module/clock]
+type = internal/date
+interval = 10
+date = %%{F#999}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
+
+; vim:ft=dosini
