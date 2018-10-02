@@ -132,6 +132,7 @@ func_packages () {
 	#------------------------------------------------
 		alias python3="python3.6 -OO"
 		alias python2="python -OO"
+		alias py="python"
 	#------------------------------------------------
 
 
